@@ -1,57 +1,70 @@
-const app = require('../src/app')
-const debug = require('debug')('nodestr:server');
-const http = require('http');//carrega o modulo http no node
-
+const app = require('../src/app');
+const debug = require('debug')('balta:server');
+const http = require('http');
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-const server = http.createServer(app); // cria um servidor http
+const server = http.createServer(app);
 
 server.listen(port);
 server.on('error', onError);
-server.on('Listening', onListening);
-console.log('API rodando na porta ' + port);
+server.on('listening', onListening);
+console.log('Api rodando na porta ' + port);
 
-function normalizePort(val) {
+function normalizePort(val){
     const port = parseInt(val, 10);
 
-    if (isNaN(port)) {
+    if(isNaN(port)){
         return val;
     }
-    if (port >= 0) {
+
+    if(port >= 0){
         return port;
     }
+
     return false;
 }
 
-function onError(error) {
-    if (error.syscall !== 'listen') {
+function onError(error){
+    if(error.syscall !== 'listen'){
         throw error;
     }
-
     const bind = typeof port === 'string' ?
         'Pipe ' + port :
         'Port ' + port;
 
-    switch (error.code) {
-        case 'EACCES':
+    switch (error.code){
+        case 'EACESS' :
             console.error(bind + ' requires elevated privileges');
             process.exit(1);
             break;
         case 'EADDRINUSE':
-            console.error(bind + ' is alread in use');
+            console.error(bind + ' is already in use');
             process.exit(1);
             break;
-        default:
+        default: 
             throw error;
     }
+    
 }
+const router = express.Router();
 
-function onListening() {
-    const addr = server.address();
-    const bind = typeof addr === 'string'
-        ? 'pipe' + addr
+const route = router.get('/', (req, res, next) =>{
+    res.status(200).send({
+        title: "Node Store API",
+        version: "0.0.1"
+    });
+});
+
+function onListening(){
+        const addr = server.address();
+        const bind = typeof addr === 'string'
+        ? 'pipe ' + addr
         : 'port ' + addr.port;
-    debug('Listening on ' + bind);
-}
+        debug('Listening on ' + bind);
+    }
+
+app.use('/', route);
+
+
