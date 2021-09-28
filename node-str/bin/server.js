@@ -48,14 +48,6 @@ function onError(error){
     }
     
 }
-const router = express.Router();
-
-const route = router.get('/', (req, res, next) =>{
-    res.status(200).send({
-        title: "Node Store API",
-        version: "0.0.1"
-    });
-});
 
 function onListening(){
         const addr = server.address();
@@ -63,8 +55,7 @@ function onListening(){
         ? 'pipe ' + addr
         : 'port ' + addr.port;
         debug('Listening on ' + bind);
-    }
+}
 
-app.use('/', route);
 
 
