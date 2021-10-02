@@ -7,7 +7,10 @@ const mongoose = require('mongoose');
 const app = express();
 const router = express.Router();
 
-mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false');
+mongoose.connect('mongodb://localhost:27017/Node?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false');
+
+const Product = require('./models/product');
+
 const indexRoute = require('./routes/index-route');
 const productRoute = require('./routes/product-route');
 
