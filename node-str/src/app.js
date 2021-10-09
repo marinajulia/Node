@@ -10,6 +10,8 @@ const router = express.Router();
 mongoose.connect('mongodb://localhost:27017/Node?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false');
 
 const Product = require('./models/product');
+const Custumer = require('./models/customer');
+
 
 const indexRoute = require('./routes/index-route');
 const productRoute = require('./routes/product-route');
