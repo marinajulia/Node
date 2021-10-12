@@ -1,9 +1,7 @@
 'use strict';
 
-const mongoose = require('mongoose');
-const Product = mongoose.model('Product');
 const ValidationContract = require('../validators/fluent-validator');
-const repository = require('../repositories/product-repository');
+const repository = require('../repositories/productRepository');
 
 exports.get = async (req, res, next) => {
     try {
