@@ -1,7 +1,6 @@
 'use strict'
-
 const mongoose = require('mongoose');
-const Order = mongoose.model('Customer');
+const Order = mongoose.model('Order');
 
 exports.get = async(data) => {
     var res = await Order.find({});
