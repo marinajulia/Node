@@ -59,7 +59,7 @@ exports.post = async (req, res, next) => {
     }
     try{
         //cria blob service:
-        const  blobSvc = azure.createBlobService(config.userImagesBlobConnectionString);
+        const blobSvc = azure.createBlobService(config.containerConnectionString);
 
         let filename = guid.raw().toString() + '.jpg';
         let rawData = req.body.image;
@@ -86,7 +86,6 @@ exports.post = async (req, res, next) => {
             image: 'https://nodestrbalta.blob.core.windows.net/product-images/' + filename
         })
         res.status(201).send({ message: 'Produto cadastrado com sucesso' });
-
 
     }catch (e) {
         console.log(e)
